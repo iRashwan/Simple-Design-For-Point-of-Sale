@@ -1,0 +1,1759 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The Above 3 Meta Tags Comes First -->
+
+    <!-- Tab title and icon -->
+    <title>XO Stores</title>
+    <link rel="Icon" href="assets/images/iconLogo.png" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="assets/css/form-elements.css"> -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+
+    <!-- Bootstrap v3.3 -->
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css" />
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+    <!-- Data Table -->
+    <link rel="stylesheet" href="assets/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="assets/css/dataTables.bootstrap.min.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    <!-- My Custom Stlyles -->
+    <style>
+        /* @import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700); */
+        /* written by riliwan balogun http://www.facebook.com/riliwan.rabo*/
+        
+        .nav {
+            padding: 10px 0 0;
+            position: fixed;
+            width: 100%;
+            z-index: 999;
+            background: url('assets/images/geometry2.png');
+        }
+        
+        .board {
+            width: 75%;
+            margin: 60px auto;
+            height: 500px;
+            background: #fff;
+            /*box-shadow: 10px 10px #ccc,-10px 23px #ddd;*/
+        }
+        
+        .board .nav-tabs {
+            position: relative;
+            /* border-bottom: 0; */
+            /* width: 80%; */
+            margin: 40px auto;
+            margin-bottom: 0;
+            box-sizing: border-box;
+        }
+        
+        .board>div.board-inner {
+            background: #fafafa url('assets/images/geometry2.png');
+            background-size: 14%;
+        }
+        
+        p.narrow {
+            width: 60%;
+            margin: 10px auto;
+        }
+        
+        .liner {
+            height: 2px;
+            background: #ddd;
+            position: absolute;
+            width: 80%;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            top: 55%;
+            z-index: 1;
+        }
+        
+        .nav-tabs>li.active>a,
+        .nav-tabs>li.active>a:hover,
+        .nav-tabs>li.active>a:focus {
+            color: #555555;
+            cursor: default;
+            /* background-color: #ffffff; */
+            border: 0;
+            border-bottom-color: transparent;
+        }
+        
+        span.round-tabs {
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            display: inline-block;
+            border-radius: 100px;
+            background: white;
+            z-index: 2;
+            position: absolute;
+            left: 0;
+            text-align: center;
+            font-size: 23px;
+        }
+        
+        span.round-tabs.one {
+            color: rgb(34, 194, 34);
+            border: 2px solid rgb(34, 194, 34);
+        }
+        
+        li.active span.round-tabs.one {
+            background: #fff !important;
+            border: 2px solid #ddd;
+            color: rgb(34, 194, 34);
+        }
+        
+        span.round-tabs.two {
+            color: #febe29;
+            border: 2px solid #febe29;
+        }
+        
+        li.active span.round-tabs.two {
+            background: #fff !important;
+            border: 2px solid #ddd;
+            color: #febe29;
+        }
+        
+        span.round-tabs.three {
+            color: #3e5e9a;
+            border: 2px solid #3e5e9a;
+        }
+        
+        li.active span.round-tabs.three {
+            background: #fff !important;
+            border: 2px solid #ddd;
+            color: #3e5e9a;
+        }
+        
+        span.round-tabs.four {
+            color: #f1685e;
+            border: 2px solid #f1685e;
+        }
+        
+        li.active span.round-tabs.four {
+            background: #fff !important;
+            border: 2px solid #ddd;
+            color: #f1685e;
+        }
+        
+        span.round-tabs.five {
+            color: #999;
+            border: 2px solid #999;
+        }
+        
+        li.active span.round-tabs.five {
+            background: #fff !important;
+            border: 2px solid #ddd;
+            color: #999;
+        }
+        
+        .nav-tabs>li.active>a span.round-tabs {
+            background: #fafafa;
+        }
+        
+        .nav-tabs>li {
+            width: 20%;
+        }
+        /*li.active:before {
+    content: " ";
+    position: absolute;
+    left: 45%;
+    opacity:0;
+    margin: 0 auto;
+    bottom: -2px;
+    border: 10px solid transparent;
+    border-bottom-color: #fff;
+    z-index: 1;
+    transition:0.2s ease-in-out;
+}*/
+        
+        .nav-tabs>li:after {
+            content: " ";
+            position: absolute;
+            left: 45%;
+            opacity: 0;
+            margin: 0 auto;
+            bottom: 0px;
+            border: 5px solid transparent;
+            border-bottom-color: #ddd;
+            transition: 0.1s ease-in-out;
+        }
+        
+        .nav-tabs>li.active:after {
+            content: " ";
+            position: absolute;
+            left: 45%;
+            opacity: 1;
+            margin: 0 auto;
+            bottom: 0px;
+            border: 10px solid transparent;
+            border-bottom-color: #ddd;
+        }
+        
+        .nav-tabs>li a {
+            width: 70px;
+            height: 70px;
+            margin: 23px auto;
+            border-radius: 100%;
+            padding: 0;
+        }
+        
+        .nav-tabs>li a:hover {
+            background: transparent;
+        }
+        
+        .tab-content {
+            height: 700px;
+            padding: 100px 0 0 0;
+        }
+        
+        .tab-pane {
+            position: relative;
+            padding-top: 23px;
+        }
+        
+        .tab-content .head {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 23px;
+            text-transform: uppercase;
+            padding-bottom: 10px;
+        }
+        
+        .btn-outline-rounded {
+            padding: 10px 40px;
+            margin: 23px 0;
+            border: 2px solid transparent;
+            border-radius: 23px;
+        }
+        
+        .btn.green {
+            background-color: #5cb85c;
+            /*border: 2px solid #5cb85c;*/
+            color: #ffffff;
+        }
+        
+        @media( max-width: 585px) {
+            .board {
+                width: 90%;
+                height: auto !important;
+            }
+            span.round-tabs {
+                font-size: 16px;
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+            }
+            .tab-content .head {
+                font-size: 23px;
+            }
+            .nav-tabs>li a {
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+            }
+            .nav-tabs>li.active:after {
+                content: " ";
+                position: absolute;
+                left: 35%;
+            }
+            .btn-outline-rounded {
+                padding: 12px 23px;
+            }
+        }
+        /*css for dataTable row group*****/
+        
+        table.dataTable tr.group td {
+            font-weight: bold;
+            background-color: #e0e0e0
+        }
+        /*css for dataTable*/
+        
+        .dataTables_scrollHeadInner {
+            width: 100% !important;
+        }
+        
+        .dataTables_scrollHeadInner table {
+            width: 100% !important;
+        }
+        
+        .dataTables_scrollFootInner {
+            width: 100% !important;
+        }
+        
+        .dataTables_scrollFootInner table {
+            width: 100% !important;
+        }
+        
+        .DataTables_sort_icon {
+            /* remove sort Arrow*/
+            display: none;
+        }
+        
+        table tbody tr.odd {
+            background-color: #e9e9e9;
+        }
+        
+        table tbody tr.even {
+            background-color: #f6f6f6;
+        }
+        
+        table.dataTable thead th,
+        table.dataTable tfoot th {}
+        
+        .fg-toolbar.ui-toolbar.ui-widget-header.ui-helper-clearfix.ui-corner-tl.ui-corner-tr {
+            background-color: #e6e6e6;
+        }
+        
+        .fg-toolbar.ui-toolbar.ui-widget-header.ui-helper-clearfix.ui-corner-bl.ui-corner-br {
+            background-color: #e6e6e6;
+        }
+        
+        div.dataTables_paginate a.previous:before {
+            content: "";
+        }
+        
+        div.dataTables_paginate a.next:after {
+            content: "";
+        }
+        /*css table for this page*/
+        
+        .c-H {
+            height: 30px;
+        }
+        
+        table.dataTable td {
+            padding: 5px 0 5px 0 !important;
+        }
+        
+        table.dataTable th {
+            padding: 5px 0 5px 0 !important;
+        }
+        
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            appearance: none;
+            margin: 0;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+        /*css for div car details*/
+        
+        .c-cntainer {
+            background-color: #ffffff;
+            padding: 1px 1px 1px 1px;
+            height: auto;
+            border-radius: 2px;
+        }
+        
+        .c-details {
+            padding: 1px 1px 1px 1px;
+            margin: 0;
+        }
+        
+        .c-detailsName {
+            color: #454545;
+            font-weight: 600;
+            font-size: 12px;
+            width: 100%;
+            min-height: 28px;
+            background-color: #e6e6e6;
+            border-radius: 2px;
+            border: 1px solid #f2f2f2;
+            vertical-align: middle;
+            line-height: 26px;
+            /* These are technically the same, but use both */
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            -ms-word-break: break-all;
+            /* This is the dangerous one in WebKit, as it breaks things wherever */
+            word-break: break-all;
+            /* Instead use this non-standard one: */
+            word-break: break-word;
+            /* Adds a hyphen where the word breaks, if supported (No Blink) */
+            -ms-hyphens: auto;
+            -moz-hyphens: auto;
+            -webkit-hyphens: auto;
+            hyphens: auto;
+        }
+        
+        div.dataTables_length,
+        div.dataTables_filter,
+        div.dataTables_paginate,
+        div.dataTables_info {
+            padding: 6px;
+        }
+        
+        .fg-toolbar {
+            background-color: red;
+        }
+        /*------------------------------------*\
+	Preloader
+\*------------------------------------*/
+        
+        #preloader {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            background-color: #000;
+            z-index: 99999;
+        }
+        
+        .preloader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+        
+        .preloader img {
+            max-width: 250px;
+            max-height: 360px;
+            opacity: 0.3;
+            text-align: center;
+            animation: loaderbeats 1s linear infinite;
+        }
+        
+        @keyframes loaderbeats {
+            0% {
+                transform: scale(1, 1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(0.9, 0.9);
+                opacity: 0.45;
+            }
+            100% {
+                transform: scale(1, 1);
+                opacity: 0.6;
+            }
+        }
+        
+        .swal-overlay {
+            background-color: rgba(191, 191, 191, 0.45);
+        }
+        
+        .swal-text {
+            background-color: #FEFAE3;
+            padding: 17px;
+            border: 1px solid #F0E1A1;
+            display: block;
+            margin: 22px;
+            text-align: center;
+            color: #61534e;
+        }
+        
+        .swal-footer {
+            background-color: rgb(245, 248, 250);
+            margin-top: 32px;
+            border-top: 1px solid #E9EEF1;
+            overflow: hidden;
+        }
+        
+        .swal-button--Keep {
+            background-color: #5cb75c;
+        }
+        
+        .swal-button--Cancel {
+            background-color: #d8544f;
+        }
+        
+        .swal-button--Cancel:not([disabled]):hover {
+            background-color: #ac2925;
+            border-color: #761c19;
+        }
+        
+        .swal-button--Keep:not([disabled]):hover {
+            background-color: #398439;
+            border-color: #255625;
+        }
+        
+        .form-box {
+            margin-top: 100px;
+        }
+        
+        .form-top {
+            overflow: hidden;
+            padding: 0 25px 15px 25px;
+            background: #444;
+            background: rgba(0, 0, 0, 0.7);
+            -moz-border-radius: 4px 4px 0 0;
+            -webkit-border-radius: 4px 4px 0 0;
+            border-radius: 4px 4px 0 0;
+            text-align: left;
+        }
+        
+        .form-top-left {
+            float: left;
+            width: 75%;
+            padding-top: 30px;
+        }
+        
+        .form-top-left h3 {
+            margin-top: 0;
+            color: #fff;
+        }
+        
+        .form-top-left p {
+            opacity: 0.8;
+            color: #fff;
+        }
+        
+        .form-top-right {
+            float: left;
+            width: 25%;
+            padding-top: 5px;
+            font-size: 70px;
+            color: #ff0000;
+            line-height: 100px;
+            text-align: right;
+            opacity: 0.3;
+        }
+        
+        .form-bottom {
+            padding: 25px 25px 30px 25px;
+            background: #444;
+            background: rgba(0, 0, 0, 0.7);
+            -moz-border-radius: 0 0 4px 4px;
+            -webkit-border-radius: 0 0 4px 4px;
+            border-radius: 0 0 4px 4px;
+            text-align: left;
+        }
+        
+        .form-bottom form textarea {
+            height: 100px;
+        }
+        
+        .form-bottom form button.btn {
+            width: 100%;
+        }
+        
+        .form-bottom form .input-error {
+            border-color: #de615e;
+        }
+        
+        #SallerBillsModal .modal-dialog {
+            z-index: 99999;
+        }
+        
+        .Saller-Modal-Body {
+            height: 400px;
+            overflow-y: scroll;
+        }
+        
+        a {
+            color: #999999;
+        }
+        
+        a:hover {
+            color: #cc0000;
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+    <!--========== Header Start =========-->
+
+    <section style="background:#efefe9;">
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- <h2>Welcome to IGHALO!<sup>™</sup></h2>-->
+                <div class="board-inner">
+
+                    <ul class="nav nav-tabs" id="myTab">
+                        <div class="liner"></div>
+                        <li class="active">
+                            <a href="#home" data-toggle="tab" title="welcome">
+                                <span class="round-tabs one">
+                              <i class="glyphicon glyphicon-home"></i>
+                      </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#profile" data-toggle="tab" title="Store the goods">
+                                <span class="round-tabs two">
+                         <i class="glyphicon glyphicon-user"></i>
+                     </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#messages" data-toggle="tab" title="bootsnipp goodies">
+                                <span class="round-tabs three">
+                          <i class="glyphicon glyphicon-gift"></i>
+                     </span> </a>
+                        </li>
+
+                        <li>
+                            <a href="#settings" data-toggle="tab" title="blah blah">
+                                <span class="round-tabs four">
+                              <i class="glyphicon glyphicon-comment"></i>
+                         </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#doner" data-toggle="tab" title="completed">
+                                <span class="round-tabs five">
+                              <i class="glyphicon glyphicon-ok"></i>
+                         </span> </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="home">
+                        <div class="container">
+                            <div class="col-xs-12">
+                                <div class="panel panel-default" style="border-color:#c0c0c0;margin-top:25px">
+                                    <div class="panel-heading Head" style="height:55px">
+                                        <button style='float: right; ' class='btn btn-success' id='Saller-Btn'>Print Bill</button>
+                                        <button style='float: right; margin-right:15px' class='btn btn-danger' id='ResetSaller-Btn'>Reset Bill</button>
+                                        <strong>&nbsp; Store the goods</strong>
+
+                                    </div>
+                                    <div class="panel-body">
+                                        <table id='Saller-table'>
+                                            <thead>
+                                                <th class="1">BarCode</th>
+                                                <th class="2">Category</th>
+                                                <th class="3">Type</th>
+                                                <th class="4">Color</th>
+                                                <th class="5">Size</th>
+                                                <th class="6">Available QTY</th>
+                                                <th class="7">Add QTY</th>
+                                                <th class="8">Real Price</th>
+                                                <th class="9">Price</th>
+                                                <th class="10">Discount</th>
+                                                <th class="11">Add</th>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr>
+                                                    <td>1oshaX20</td>
+                                                    <td>Shoes</td>
+                                                    <td>osha</td>
+                                                    <td>red</td>
+                                                    <td>45</td>
+                                                    <td>2</td>
+                                                    <td><input class='form-control QTYInput' style="width: 65px;"></td>
+                                                    <td>200</td>
+                                                    <td>250</td>
+                                                    <td><input class='form-control DiscountInput' style="width: 65px;"></td>
+                                                    <td><button class='btn btn-success Choose-Items'><i  class="glyphicon glyphicon-shopping-cart"></i></button></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>2RicoX20</td>
+                                                    <td>Bags</td>
+                                                    <td>rico</td>
+                                                    <td>red</td>
+                                                    <td>45</td>
+                                                    <td>2</td>
+                                                    <td><input class='form-control QTYInput' style="width: 65px;"></td>
+                                                    <td>200</td>
+                                                    <td>250</td>
+                                                    <td><input class='form-control DiscountInput' style="width: 65px;"></td>
+                                                    <td><button class='btn btn-success Choose-Items'><i  class="glyphicon glyphicon-shopping-cart"></i></button></td>
+                                                </tr>
+
+
+                                                <tr>
+                                                    <td>1oshaX20</td>
+                                                    <td>Shoes</td>
+                                                    <td>osha</td>
+                                                    <td>red</td>
+                                                    <td>45</td>
+                                                    <td>2</td>
+                                                    <td><input class='form-control QTYInput' style="width: 65px;"></td>
+                                                    <td>200</td>
+                                                    <td>250</td>
+                                                    <td><input class='form-control DiscountInput' style="width: 65px;"></td>
+                                                    <td><button class='btn btn-success Choose-Items'><i  class="glyphicon glyphicon-shopping-cart"></i></button></td>
+                                                </tr>
+
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile">
+
+                        <div class='row'>
+
+                            <div class="col-xs-12">
+
+                                <div class="col-xs-4">
+
+                                    <div class="col-xs-12">
+                                        <div class="panel panel-default" style="border-color:#c0c0c0;margin-top:12px">
+                                            <div class="panel-heading Head">
+                                                <strong>&nbsp; Store the goods</strong>
+                                            </div>
+                                            <div class="panel-body">
+
+                                                <div class="col-xs-12" style="margin-top:31px">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">Category</span>
+                                                        <select id="Category-Goods" class="form-control">
+                                                                    <option value="">Choose Category </option>
+                                                                    <option value="1">Shoes</option>
+                                                                    <option value="2">Bags</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-12" style="margin-top:31px">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">Types&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                                        <input type="text" id="Type-Goods" class="form-control" disabled>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-12" style="margin-top:31px">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">Color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                                        <select id="Color-Goods" class="form-control" disabled>
+                                                                        <option value="">Choose Color </option>
+                                                                        <option value="1">red</option>
+                                                                        <option value="2">blue</option>
+                                                                       
+                                                            </select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-xs-12" style="margin-top:31px">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                                        <select id="Size-Goods" class="form-control" disabled>
+                                                                            <option value="">Choose Size </option>                                                                           
+                                                                </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-12" style="margin-top:31px">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">Quantity</span>
+                                                        <input type="text" id="Quantity-Goods" class="form-control" disabled>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-12" style="margin-top:31px">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"> Basic Price</span>
+                                                        <input type="text" id="Acutal-Price-Goods" class="form-control" disabled>
+                                                        <span class="input-group-addon">LE</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-12" style="margin-top:31px">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">Total Price</span>
+                                                        <input type="text" id="Price-Goods" class="form-control" disabled>
+                                                        <span class="input-group-addon">LE</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-12" style="margin-top:31px">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">BarCode</span>
+                                                        <input type="text" id="BarCode-Goods" class="form-control" disabled>
+                                                        <span id="auto-Generate" class="input-group-addon btn btn-info">Auto</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-12" style="margin-top:31px">
+                                                    <div class="col-xs-8"></div>
+                                                    <div class="col-xs-4">
+
+                                                        <button id="GoodsSave-Btn" class="btn btn-success">&nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;</button>
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-xs-8">
+
+                                    <div class="col-xs-12" style="margin-top: 10px;">
+
+                                        <div class="panel panel-default" style="border-color:#c0c0c0;">
+                                            <div class="panel-heading Head">
+                                                <strong>&nbsp; Store the goods</strong>
+                                            </div>
+                                            <div class="panel-body" style="height: 620px">
+
+                                                <table id="Main_Table">
+
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Date</th>
+                                                            <th>Category</th>
+                                                            <th>Types</th>
+                                                            <th>Color</th>
+                                                            <th>Size</th>
+                                                            <th>Quantity</th>
+                                                            <th>Price</th>
+                                                            <th>BarCode</th>
+                                                            <th>Edit</th>
+                                                            <th>Delete</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>2018-12-11</td>
+                                                            <td>ahmed</td>
+                                                            <td>essan</td>
+                                                            <td>adel</td>
+                                                            <td>ahmed</td>
+                                                            <td>hassan</td>
+                                                            <td>rashan</td>
+                                                            <td>123</td>
+                                                            <td><button class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></button></td>
+                                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2018-12-11</td>
+                                                            <td>ahmed56</td>
+                                                            <td>essam</td>
+                                                            <td>ades</td>
+                                                            <td>ahmed</td>
+                                                            <td>hassan</td>
+                                                            <td>rashan</td>
+                                                            <td>123</td>
+                                                            <td><button class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></button></td>
+                                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2018-12-11</td>
+                                                            <td>ahmed</td>
+                                                            <td>essan</td>
+                                                            <td>adel</td>
+                                                            <td>ahmed</td>
+                                                            <td>hassan</td>
+                                                            <td>rashan</td>
+                                                            <td>123</td>
+                                                            <td><button class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></button></td>
+                                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2018-12-11</td>
+                                                            <td>ahmed56</td>
+                                                            <td>essam</td>
+                                                            <td>ades</td>
+                                                            <td>ahmed</td>
+                                                            <td>hassan</td>
+                                                            <td>rashan</td>
+                                                            <td>123</td>
+                                                            <td><button class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></button></td>
+                                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2018-12-11</td>
+                                                            <td>ahmed</td>
+                                                            <td>essan</td>
+                                                            <td>adel</td>
+                                                            <td>ahmed</td>
+                                                            <td>hassan</td>
+                                                            <td>rashan</td>
+                                                            <td>123</td>
+                                                            <td><button class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></button></td>
+                                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2018-12-11</td>
+                                                            <td>ahmed56</td>
+                                                            <td>essam</td>
+                                                            <td>ades</td>
+                                                            <td>ahmed</td>
+                                                            <td>hassan</td>
+                                                            <td>rashan</td>
+                                                            <td>123</td>
+                                                            <td><button class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></button></td>
+                                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2018-12-11</td>
+                                                            <td>ahmed</td>
+                                                            <td>essan</td>
+                                                            <td>adel</td>
+                                                            <td>ahmed</td>
+                                                            <td>hassan</td>
+                                                            <td>rashan</td>
+                                                            <td>123</td>
+                                                            <td><button class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></button></td>
+                                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2018-12-11</td>
+                                                            <td>ahmed56</td>
+                                                            <td>essam</td>
+                                                            <td>ades</td>
+                                                            <td>ahmed</td>
+                                                            <td>hassan</td>
+                                                            <td>rashan</td>
+                                                            <td>123</td>
+                                                            <td><button class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></button></td>
+                                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2018-12-11</td>
+                                                            <td>ahmed</td>
+                                                            <td>essan</td>
+                                                            <td>adel</td>
+                                                            <td>ahmed</td>
+                                                            <td>hassan</td>
+                                                            <td>rashan</td>
+                                                            <td>123</td>
+                                                            <td><button class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></button></td>
+                                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2018-12-11</td>
+                                                            <td>ahmed56</td>
+                                                            <td>essam</td>
+                                                            <td>ades</td>
+                                                            <td>ahmed</td>
+                                                            <td>hassan</td>
+                                                            <td>rashan</td>
+                                                            <td>123</td>
+                                                            <td><button class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></button></td>
+                                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2018-12-11</td>
+                                                            <td>ahmed</td>
+                                                            <td>essan</td>
+                                                            <td>adel</td>
+                                                            <td>ahmed</td>
+                                                            <td>hassan</td>
+                                                            <td>rashan</td>
+                                                            <td>123</td>
+                                                            <td><button class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></button></td>
+                                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2018-12-11</td>
+                                                            <td>ahmed56</td>
+                                                            <td>essam</td>
+                                                            <td>ades</td>
+                                                            <td>ahmed</td>
+                                                            <td>hassan</td>
+                                                            <td>rashan</td>
+                                                            <td>123</td>
+                                                            <td><button class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></button></td>
+                                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2018-12-11</td>
+                                                            <td>ahmed</td>
+                                                            <td>essan</td>
+                                                            <td>adel</td>
+                                                            <td>ahmed</td>
+                                                            <td>hassan</td>
+                                                            <td>rashan</td>
+                                                            <td>123</td>
+                                                            <td><button class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></button></td>
+                                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2018-12-11</td>
+                                                            <td>ahmed56</td>
+                                                            <td>essam</td>
+                                                            <td>ades</td>
+                                                            <td>ahmed</td>
+                                                            <td>hassan</td>
+                                                            <td>rashan</td>
+                                                            <td>123</td>
+                                                            <td><button class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></button></td>
+                                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2018-12-11</td>
+                                                            <td>ahmed</td>
+                                                            <td>essan</td>
+                                                            <td>adel</td>
+                                                            <td>ahmed</td>
+                                                            <td>hassan</td>
+                                                            <td>rashan</td>
+                                                            <td>123</td>
+                                                            <td><button class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></button></td>
+                                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2018-12-11</td>
+                                                            <td>ahmed56</td>
+                                                            <td>essam</td>
+                                                            <td>ades</td>
+                                                            <td>ahmed</td>
+                                                            <td>hassan</td>
+                                                            <td>rashan</td>
+                                                            <td>123</td>
+                                                            <td><button class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></button></td>
+                                                            <td><button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="tab-pane fade" id="messages">
+
+
+
+                    </div>
+
+                    <div class="tab-pane fade" id="settings">
+
+                        <div class="col-xs-12" style="margin-top: 10px;">
+
+                            <div class="panel panel-default" style="border-color:#c0c0c0;">
+                                <div class="panel-heading Head">
+                                    <strong>&nbsp; General Transactions</strong>
+                                </div>
+                                <div class="panel-body" style="height: auto">
+
+                                    <table id="transaction_Table">
+
+                                        <thead>
+                                            <tr>
+                                                <th>Category</th>
+                                                <th>Types</th>
+                                                <th>Date</th>
+                                                <th>Color</th>
+                                                <th>Size</th>
+                                                <th>BarCode</th>
+                                                <th>Time</th>
+                                                <th>Real-Cost</th>
+                                                <th>Cust-Cost</th>
+                                                <th>Discount</th>
+                                                <th>total Price</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>ahmed</td>
+                                                <td>essan</td>
+                                                <td>adel</td>
+                                                <td>ahmed</td>
+                                                <td>hassan</td>
+                                                <td>rashan</td>
+                                                <td>123</td>
+                                                <td>rashan</td>
+                                                <td>123</td>
+                                                <td>rashan</td>
+                                                <td>123</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ahmed</td>
+                                                <td>essan</td>
+                                                <td>adel</td>
+                                                <td>ahmed</td>
+                                                <td>hassan</td>
+                                                <td>rashan</td>
+                                                <td>123</td>
+                                                <td>rashan</td>
+                                                <td>123</td>
+                                                <td>rashan</td>
+                                                <td>123</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ahmed</td>
+                                                <td>essan</td>
+                                                <td>adel2</td>
+                                                <td>ahmed</td>
+                                                <td>hassan</td>
+                                                <td>rashan</td>
+                                                <td>123</td>
+                                                <td>rashan</td>
+                                                <td>123</td>
+                                                <td>rashan</td>
+                                                <td>123</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ahmed</td>
+                                                <td>essan</td>
+                                                <td>adel2</td>
+                                                <td>ahmed</td>
+                                                <td>hassan</td>
+                                                <td>rashan</td>
+                                                <td>123</td>
+                                                <td>rashan</td>
+                                                <td>123</td>
+                                                <td>rashan</td>
+                                                <td>123</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="tab-pane fade" id="doner">
+
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===================  Saller Bills PopUp  ================== -->
+
+
+    <div class="modal fade custom-width" id="SallerBillsModal" data-backdrop="static">
+        <div class="modal-dialog" style="width: 68%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Bill</h3>
+                    <p id='AddTotalCost'></p>
+                </div>
+                <div class="modal-body Saller-Modal-Body ">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preloader -->
+
+    <div id="preloader">
+        <div class="preloader">
+            <img src="assets/images/logo1.png" alt="PreloaderImage">
+        </div>
+    </div>
+
+    <!--============ Script Section ============-->
+    <!--============ Script Section ============-->
+    <!-- Javascript -->
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.backstretch.min.js"></script>
+
+
+    <!--[if lt IE 10]>
+        <script src="assets/js/placeholder.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="assets/js/jquery-2.2.4.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dataTables.bootstrap.min.js"></script>
+    <script src="assets/js/sweetalert.min.js"></script>
+    <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('a[title]').tooltip();
+
+
+            // ================   FadeOut For Loading Page Delay ============ //
+
+            $("#preloader").delay(1000).fadeOut();
+
+            // ================   Log IN form Jquery Code  ============ //
+
+
+
+            $(document).on('click', '.sign', function() {
+
+                if ($('#form-username').val() == 'admin' && $('#form-password').val() == '123') {
+
+                    $('.loginCon').fadeOut(1000);
+                }
+            });
+
+            $('body').append('<div class="loginCon">' +
+                '<div class="col-sm-6 col-sm-offset-3 form-box">' +
+                '<div class="form-top">' +
+                ' <div class="form-top-left">' +
+                '<h3>Login to our site</h3>' +
+                '<p>Enter your username and password to log on:</p>' +
+                '</div>' +
+                '<div class="form-top-right">' +
+                '<i class="fa fa-lock"></i>' +
+                '</div>' +
+                '</div>' +
+                '<div class="form-bottom">' +
+                '<div class="login-form">' +
+                '<div class="form-group">' +
+                '<label class="sr-only" for="form-username">Username</label>' +
+                '<input type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="form-username">' +
+                '</div>' +
+                '<div class="form-group">' +
+                '<label class="sr-only" for="form-password">Password</label>' +
+                '<input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">' +
+                '</div>' +
+                '<button class="btn sign btn-success">Sign in!</button>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>');
+
+
+            //  ============  Main Saller Data Table ============== //
+
+            $('#Saller-table').dataTable({
+
+                drawCallback: function() {
+                    $("#Saller-table").find(".table.dataTable.no-footer").css({
+                        width: "100%"
+                    });
+                    $("#Saller-table").find(".dataTables_scrollHeadInner").css({
+                        width: "100%"
+                    });
+                    $("#Saller-table").find("thead").find("tr").find(".1").css({
+                        width: "9%"
+                    });
+                    $("#Saller-table").find("thead").find("tr").find(".2").css({
+                        width: "9%"
+                    });
+                    $("#Saller-table").find("thead").find("tr").find(".3").css({
+                        width: "9%"
+                    });
+                    $("#Saller-table").find("thead").find("tr").find(".4").css({
+                        width: "9%"
+                    });
+                    $("#Saller-table").find("thead").find("tr").find(".5").css({
+                        width: "9%"
+                    });
+                    $("#Saller-table").find("thead").find("tr").find(".6").css({
+                        width: "9%"
+                    });
+                    $("#Saller-table").find("thead").find("tr").find(".7").css({
+                        width: "9%"
+                    });
+                    $("#Saller-table").find("thead").find("tr").find(".8").css({
+                        width: "9%"
+                    });
+                    $("#Saller-table").find("thead").find("tr").find(".9").css({
+                        width: "9%"
+                    });
+                    $("#Saller-table").find("thead").find("tr").find(".10").css({
+                        width: "9%"
+                    });
+                    $("#Saller-table").find("thead").find("tr").find(".11").css({
+                        width: "9%"
+                    });
+
+
+
+                    $("#Saller-table").css({
+                        "width": "100%"
+                    });
+                },
+            });
+
+
+
+
+
+            //  ==================  Adding Items to Car   ==================  //
+            var BarCodes = '';
+            var Categorys = '';
+            var Types = '';
+            var Colors = '';
+            var Sizes = '';
+            var Price = '';
+            var Discounts = '';
+            var Total_Price = '';
+            var AllRowData = [];
+            var AllData = [];
+            var Count = '';
+            var getRowDiscountValue = '';
+            var getRowQtyValue = '';
+            var AvilQtys = '';
+            var Qtys = '';
+
+            $('.QTYInput').val(1);
+            $('.DiscountInput').val(0);
+            $(document).find('table#Saller-table').on('click', '.Choose-Items', function() {
+
+                var tableABC = $('#Saller-table').DataTable();
+                var row = $(this).closest("tr");
+                var data = tableABC.row(row).data();
+
+                getRowDiscountValue = $(this).closest('tr').find('.DiscountInput').val();
+                getRowQtyValue = $(this).closest('tr').find('.QTYInput').val();
+                Count = (data[8] * getRowQtyValue) - getRowDiscountValue;
+
+                AllRowData = {
+                    BarCodes: data[0],
+                    Categorys: data[1],
+                    Types: data[2],
+                    Colors: data[3],
+                    Sizes: data[4],
+                    AvilQtys: data[5],
+                    Price: data[8],
+                    Qtys: getRowQtyValue,
+                    Discounts: getRowDiscountValue,
+                    Total_Price: Count,
+                }
+
+                console.log(AllRowData);
+
+                AllData.push(AllRowData);
+
+                console.log(AllData);
+
+                swal({
+                    text: ' Product Has Been Added',
+                    timer: 800,
+                    icon: "success",
+                    button: false,
+                });
+
+                $('input.input-sm').val('');
+            });
+
+
+            // ======================  Reset Product Object  ======================== //
+
+            $(document).on('click', '#ResetSaller-Btn', function() {
+
+                AllData = [];
+
+                $('.DiscountInput').val(0);
+                $('.QTYInput').val(1);
+
+                swal({
+                    text: 'Ship Card Cleard',
+                    timer: 2000,
+                    icon: "success",
+                    button: false,
+                });
+
+            });
+
+            // ================   Print Bills Button And Modal  & show all Chosen Product ============ //
+
+            var AllProduct = '';
+            var CountAll = 0;
+            var xyz = '';
+            $(document).on('click', '#Saller-Btn', function() {
+
+                AllProduct = '';
+                $('.Saller-Modal-Body').html('');
+                for (xyz = 0; xyz < AllData.length; xyz++) {
+                    if (AllData[xyz] == null) {
+
+                    } else {
+                        AllProduct += '<div class="row MainShip " >' +
+
+                            '<div class="col-xs-1">' +
+                            '</div>' +
+
+                            '<div class="col-xs-10 arrayCount"   style="margin-top:20px;">' +
+                            '<div class="row" style="border:1px solid black ;border-radius: 5px;background-color:#f2f2f2 ">' +
+
+                            '<div class="col-xs-12"  style="margin-top:13px;">' +
+                            '<div class="col-xs-12">' +
+                            '<strong>BarCode :&nbsp' + AllData[xyz].BarCodes + '</strong>' +
+                            '</div>' +
+                            '</div>' +
+
+
+                            '<div class="col-xs-12"  style="margin-top:13px;">' +
+
+
+                            '<div class="col-xs-10">' +
+                            '<strong>  Product :&nbsp ' + AllData[xyz].Categorys + ' - ' + AllData[xyz].Types + ' - ' + AllData[xyz].Sizes + ' - ' + AllData[xyz].Colors + '</strong>' +
+                            '</div>' +
+                            '</div>' +
+
+                            '<div class="col-xs-12"  style="margin-top:13px;">' +
+                            '<div class="col-xs-3">' +
+                            '<strong>Price :&nbsp ' + AllData[xyz].Price + ' &nbspLE</strong>' +
+                            '</div>' +
+
+                            '<div class="col-xs-3">' +
+                            '<strong>Quantity :&nbsp ' + getRowQtyValue + ' </strong>' +
+                            '</div>' +
+                            '</div>' +
+
+                            '<div class="col-xs-12" style="margin-top:13px;margin-bottom:13px;">' +
+                            '<div class="col-xs-3">' +
+                            '<strong>Discount :&nbsp ' + AllData[xyz].Discounts + ' &nbspLE</strong>' +
+                            '</div>' +
+                            '<div class="col-xs-7 j-CountTotalValue"  CountTotalValue=' + AllData[xyz].Total_Price + '>' +
+                            '<strong  >Total Price :&nbsp ' + AllData[xyz].Total_Price + ' &nbspLE</strong>' +
+                            '</div>' +
+                            '<div class="col-xs-2">' +
+                            '<a href="#" class="removeBillDiv" arrCount=' + xyz + '><i class="glyphicon glyphicon-trash">Remove</i></a>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+
+                    }
+
+                }
+
+
+
+                $(document).find('.j-CountTotalValue').each(function(index, element) {
+
+                    CountAll = $(this).attr('CountTotalValue');
+                    console.log(CountAll);
+                });
+                // console.log(CountAll);
+                $('.Saller-Modal-Body').append(AllProduct);
+                $('#SallerBillsModal').modal('show');
+
+            });
+
+            //  ======================  Removing Button  ======================= //
+
+            $(document).find('#SallerBillsModal').on('click', '.removeBillDiv', function() {
+
+                var asd = $(this).attr('arrCount');
+
+                delete AllData[asd];
+                AllData[asd] = null;
+
+                $(this).closest('.MainShip').remove();
+                swal({
+                    text: 'Product Deleted',
+                    timer: 1000,
+                    icon: "success",
+                    button: false,
+                });
+
+            });
+
+
+            // ================  Function For  DoneTyping in BareCode Input Text Feild  ========== //
+
+            (function($) {
+                $.fn.extend({
+                    donetyping: function(callback, timeout) {
+                        timeout = timeout || 1e3;
+                        var timeoutReference,
+                            doneTyping = function(el) {
+                                if (!timeoutReference) return;
+                                timeoutReference = null;
+                                callback.call(el);
+                            };
+                        return this.each(function(i, el) {
+                            var $el = $(el);
+
+                            $el.is(':input') && $el.on('keyup keypress paste', function(e) {
+
+                                if (e.type == 'keyup' && e.keyCode != 8) return;
+
+
+                                if (timeoutReference) clearTimeout(timeoutReference);
+                                timeoutReference = setTimeout(function() {
+
+                                    doneTyping(el);
+                                }, timeout);
+                            }).on('blur', function() {
+
+                                doneTyping(el);
+                            });
+                        });
+                    }
+                });
+            })(jQuery);
+
+            //// ============================== Store the Goods Jquery Code ============================ ////
+
+
+
+            $('#Main_Table').dataTable({});
+
+
+
+            var ShoesSize = '<option value="">Choose Size </option>' +
+                '<option value="23">23</option>' +
+                '<option value="21">21</option>' +
+                '<option value="22">22</option>' +
+                '<option value="23">23</option>' +
+                '<option value="24">24</option>' +
+                '<option value="23">23</option>' +
+                '<option value="26">26</option>' +
+                '<option value="27">27</option>' +
+                '<option value="28">28</option>' +
+                '<option value="29">29</option>' +
+                '<option value="30">30</option>' +
+                '<option value="31">31</option>' +
+                '<option value="32">32</option>' +
+                '<option value="33">33</option>' +
+                '<option value="34">34</option>' +
+                '<option value="35">35</option>' +
+                '<option value="36">36</option>' +
+                '<option value="37">37</option>' +
+                '<option value="38">38</option>' +
+                '<option value="39">39</option>' +
+                '<option value="40">40</option>' +
+                '<option value="41">41</option>' +
+                '<option value="42">42</option>' +
+                '<option value="43">43</option>' +
+                '<option value="44">44</option>' +
+                '<option value="45">45</option>' +
+                '<option value="46">46</option>' +
+                '<option value="47">47</option>' +
+                '<option value="48">48</option>' +
+                '<option value="49">49</option>' +
+                '<option value="50">50</option>';
+
+
+            var BagsSize = '<option value="">Choose Size </option>' +
+                '<option value="Ex-S">Extra Small</option>' +
+                '<option value="S">Small</option>' +
+                '<option value="M">Medium</option>' +
+                '<option value="L">Large</option>' +
+                '<option value="X-L">X-Large</option>' +
+                '<option value="XX-L">XX-Large</option>' +
+                '<option value="XXX-L">XXX-Large</option>';
+
+
+            var BarCodeLastVAlue = '';
+
+            ///  =================  function to reset All dropdown lists and input text in store form ============== //
+
+            var clearData = function() {
+
+                $(document).find('select#Color-Goods').find('option:eq(0)').attr('selected', true);
+                $(document).find('select#Color-Goods').find('option:eq(0)').removeAttr('selected');
+                $(document).find('select#Size-Goods').find('option:eq(0)').attr('selected', true);
+                $(document).find('select#Size-Goods').find('option:eq(0)').removeAttr('selected');
+                $(document).find('#Type-Goods').val('');
+                $(document).find('#Acutal-Price-Goods').val('');
+                $(document).find('#Price-Goods').val('');
+                $(document).find('#Quantity-Goods').val('');
+                $(document).find('#BarCode-Goods').val('');
+            };
+
+            // ============== Category on Change =============== //
+
+            $('#Category-Goods').change(function() {
+
+                $('#Size-Goods').empty();
+
+                var getCategoryVal = $('#Category-Goods :selected').val();
+
+                BarCodeLastVAlue += getCategoryVal;
+
+                var x = function() {
+                    $('#Type-Goods').prop('disabled', false);
+                    $('#Color-Goods').prop('disabled', false);
+                    $('#Quantity-Goods').prop('disabled', false);
+                    $('#Price-Goods').prop('disabled', false);
+                    $('#BarCode-Goods').prop('disabled', false);
+                    $('#Acutal-Price-Goods').prop('disabled', false);
+                };
+
+
+                var y = function() {
+                    $('#Type-Goods').prop('disabled', true);
+                    $('#Color-Goods').prop('disabled', true);
+                    $('#Quantity-Goods').prop('disabled', true);
+                    $('#Price-Goods').prop('disabled', true);
+                    $('#BarCode-Goods').prop('disabled', true);
+                    $('#Acutal-Price-Goods').prop('disabled', true);
+                };
+
+                if (getCategoryVal == 1) {
+                    $('#Size-Goods').prop('disabled', false);
+                    $('#Size-Goods').append(ShoesSize);
+                    x();
+                } else if (getCategoryVal == 2) {
+                    $('#Size-Goods').prop('disabled', false);
+                    $('#Size-Goods').append(BagsSize);
+                    x();
+                } else {
+                    $('#Size-Goods').prop('disabled', true);
+                    $('#Size-Goods').append('<option value="">Choose Size </option>');
+                    y();
+                    clearData();
+                }
+
+
+            });
+
+
+
+            // ================  Save Store Form Button  ================= //
+
+            var object = '';
+
+            $('#GoodsSave-Btn').click(function() {
+                var d = new Date();
+
+                var month = d.getMonth() + 1;
+                var day = d.getDate();
+
+                var outputDate = d.getFullYear() + '/' +
+                    (month < 10 ? '0' : '') + month + '/' +
+                    (day < 10 ? '0' : '') + day;
+
+
+                object = {
+                    'Category': $('#Category-Goods :selected').val(),
+                    'Types': $('#Type-Goods').val(),
+                    'Color': $('#Color-Goods  :selected').val(),
+                    'Size': $('#Size-Goods  :selected').val(),
+                    'Quantity': $('#Quantity-Goods').val(),
+                    'MainPrice': $('#Acutal-Price-Goods').val(),
+                    'Price': $('#Price-Goods').val(),
+                    'BarCode': $('#BarCode-Goods').val(),
+                    'Date': outputDate,
+                }
+                console.log(object);
+
+            });
+
+            var Category = '';
+            var Types = '';
+            var Color = '';
+            var Size = '';
+            var Quantity = '';
+            var Price = '';
+            var MainCost = ';'
+
+            // ===========  Adding a Auto BarCode Check For Complete Values =========== /////
+
+            $('#auto-Generate').click(function() {
+
+                $('#BarCode-Goods').val('');
+
+                Category = $('#Category-Goods :selected').val();
+                Types = $('#Type-Goods').val();
+                Color = $('#Color-Goods  :selected').val();
+                Size = $('#Size-Goods  :selected').val();
+                Quantity = $('#Quantity-Goods').val();
+                Price = $('#Price-Goods').val();
+                MainCost = $('#Acutal-Price-Goods').val();
+
+
+                if (Category == '' || Types == '' || Color == '' || Size == '' || Quantity == '' || Price == ' ' || MainCost == '') {
+
+                    swal({
+                        text: ' To Generate Auto BarCode You Have to Complete All Data !',
+                        timer: 3000,
+                        icon: "error",
+                        button: false,
+                    });
+                } else {
+                    $('#BarCode-Goods').val(Category + Types + Color + Size);
+                }
+            });
+
+
+            // =======  Adding a Manual BarCode Check For Complete Values ======/////
+
+            $('#BarCode-Goods').keyup(function() {
+
+                Category = $('#Category-Goods :selected').val();
+                Types = $('#Type-Goods').val();
+                Color = $('#Color-Goods  :selected').val();
+                Size = $('#Size-Goods  :selected').val();
+                Quantity = $('#Quantity-Goods').val();
+                Price = $('#Price-Goods').val();
+                MainCost = $('#Acutal-Price-Goods').val();
+
+
+                if (Category == '' || Types == '' || Color == '' || Size == '' || Quantity == '' || Price == '' || MainCost == '') {
+
+                    $('#BarCode-Goods').val('');
+
+                    swal({
+                        text: ' To Generate BarCode You Have to Complete All Data !',
+                        timer: 3000,
+                        icon: "error",
+                        button: false,
+                    });
+
+                } else {
+
+                }
+
+            });
+
+            //  ===============  General Transactions jQuery Code With Grouping Rows  ============  // 
+
+            $('#transaction_Table').dataTable({
+
+                order: [
+                    [2, 'asc']
+                ],
+                rowGroup: {
+                    startRender: null,
+                    endRender: function(rows, group) {
+                        return group + ' (' + rows.count() + ')';
+                    },
+                    dataSrc: 2
+                }
+
+            });
+
+
+
+        });
+    </script>
+</body>
+
+</html>
